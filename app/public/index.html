@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="%LANG_ISO_CODE%">
+  <head>
+    <meta charset="utf-8" />
+    <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+    <!-- Added to the Home Screen, it opens without Safari's toolbars, which gives the controller more room. -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <title>%WEB_TITLE%</title>
+    <!-- The `react-native-web` recommended style reset: https://necolas.github.io/react-native-web/docs/setup/#root-element -->
+    <style id="expo-reset">
+      /* These styles make the body full-height */
+      html,
+      body {
+        height: 100%;
+      }
+      /* These styles disable body scrolling if you are using <ScrollView> */
+      body {
+        overflow: hidden;
+      }
+      /* These styles make the root element full-height */
+      #root {
+        display: flex;
+        height: 100%;
+        flex: 1;
+      }
+      /* A thumb on the controller must never scroll, zoom, select text or open a callout. */
+      html,
+      body {
+        position: fixed;
+        inset: 0;
+        background: #000;
+        overscroll-behavior: none;
+        touch-action: none;
+        -webkit-user-select: none;
+        user-select: none;
+        -webkit-touch-callout: none;
+        -webkit-tap-highlight-color: transparent;
+      }
+      input {
+        -webkit-user-select: text;
+        user-select: text;
+      }
+    </style>
+    <script>
+      // iOS Safari ignores user-scalable=no, so pinch and page drag have to be cancelled directly.
+      for (const type of ['touchmove', 'gesturestart']) {
+        document.addEventListener(type, (e) => e.preventDefault(), { passive: false });
+      }
+    </script>
+  </head>
+
+  <body>
+    <!-- Use static rendering with Expo Router to support running without JavaScript. -->
+    <noscript> You need to enable JavaScript to run this app. </noscript>
+    <!-- The root element for your Expo app. -->
+    <div id="root"></div>
+  </body>
+</html>
